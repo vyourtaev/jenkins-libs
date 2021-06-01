@@ -1,4 +1,4 @@
-def call(String name = "Dynamic Stage env") {
+def call(String name = "Dynamic default env name") {
     script {
         sh """
             echo Hi ${name}

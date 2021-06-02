@@ -9,7 +9,7 @@ def ansible(String inventory, String limit, String pattern ) {
 }
 
 def terraform(String action) {
-  return sh (script: "echo terraform plan", returnStdout: true)
+  return sh (script: "echo terraform $action", returnStdout: true)
 }
 
 

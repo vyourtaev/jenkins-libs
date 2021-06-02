@@ -9,7 +9,7 @@ ansibleEnv
  */
 def construct(String args) {
     ansibleEnv = [
-            args: $args,
+            args: args,
             inventory: 'inventory/hosts_cf_stage',
             subset: 'vault',
             patern: 'vault'

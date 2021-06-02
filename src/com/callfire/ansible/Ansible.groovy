@@ -20,7 +20,7 @@ def getAnsibleEnv() {
     return ansibleEnv
 }
 
-def run() {
+def play() {
     def command = "ansible $ansibleEnv"
     return sh (script: "echo $command", returnStdout: true)
 }

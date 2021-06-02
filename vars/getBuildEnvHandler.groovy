@@ -1,5 +1,5 @@
-def call(String args){
+def call(ansibleObj){
     def env =  new com.callfire.BuildEnv()
-    env.construct(args)
+    env.construct(ansibleObj)
     return env
 }

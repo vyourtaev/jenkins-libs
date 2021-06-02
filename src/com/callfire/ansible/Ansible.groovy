@@ -7,7 +7,7 @@ ansibleEnv
  * @param
  * @return
  */
-def constructor(String args) {
+def construct(String args) {
     ansibleEnv = [
             args: $args,
             inventory: 'inventory/hosts_cf_stage',

@@ -1,4 +1,4 @@
-package com.callfire.Main
+package com.callfire.main
 
 mainEnv
 
@@ -11,7 +11,11 @@ ansibleHandler
  * @return
  */
 def construct(ansibleObj){
-    mainEnv = [1:"one"]
+    mainEnv = [
+            1:  "one",
+            2:  "two",
+            3:  "three"
+    ]
     ansibleHandler = ansibleObj
 }
 
@@ -19,6 +23,11 @@ def getMainEnv() {
     return mainEnv
 }
 
-def custom1(String args) {
+/**
+ * Register our data
+ * @param args - json as string
+ * @return stdout
+ */
+def test(String args) {
     return ansibleHandler.play(args)
 }

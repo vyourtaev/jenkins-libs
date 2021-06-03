@@ -11,12 +11,12 @@ ansibleHandler
  * @return
  */
 def construct(ansibleObj){
-    mainEnvEnv = [:]
+    mainEnv = [:]
     ansibleHandler = ansibleObj
 }
 
 def getMainEnv() {
-    return mainEnvdEnv
+    return mainEnv
 }
 
 def test() {

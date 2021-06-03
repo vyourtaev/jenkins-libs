@@ -11,7 +11,7 @@ ansibleHandler
  * @return
  */
 def construct(ansibleObj){
-    mainEnv = [:]
+    mainEnv = [1:"one"]
     ansibleHandler = ansibleObj
 }
 
@@ -19,6 +19,6 @@ def getMainEnv() {
     return mainEnv
 }
 
-def test() {
-    return ansibleHandler.play("Test case")
+def custom1(String args) {
+    return ansibleHandler.play(args)
 }

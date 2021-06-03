@@ -1,1 +1,5 @@
-/** A map that holds all constants and data members that can be override when constructing  */
+def call(String args){
+    def terraform =  new com.callfire.terraform.Terraform()
+    terraform.construct(args)
+    return terraform
+}

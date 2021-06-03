@@ -1,5 +1,5 @@
-def call(ansible){
+def call(ansible, terraform){
     def mainEnv =  new com.callfire.main.Main()
-    mainEnv.construct(ansible)
+    mainEnv.construct(ansible, terraform)
     return mainEnv
 }

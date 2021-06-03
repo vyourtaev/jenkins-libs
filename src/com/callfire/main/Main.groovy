@@ -3,6 +3,7 @@ package com.callfire.main
 mainEnv
 
 ansibleHandler
+terraformHandler
 
 /**
  * Imitates a constructor with object composition
@@ -10,13 +11,14 @@ ansibleHandler
  * @param ansibleObj - an Ansible object
  * @return
  */
-def construct(ansibleObj){
+def construct(ansible, terraform){
     mainEnv = [
             1:  "one",
             2:  "two",
             3:  "three"
     ]
-    ansibleHandler = ansibleObj
+    ansibleHandler = ansible
+    terraformHandler = terraform
 }
 
 def getMainEnv() {
@@ -30,4 +32,12 @@ def getMainEnv() {
  */
 def test(String args) {
     return ansibleHandler.play(args)
+}
+
+def provision(String args){
+    return terraformHandler.apply(args)
+}
+
+def destroy(String args){
+    return terraformHandler.destroy(args)
 }

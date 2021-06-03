@@ -34,10 +34,29 @@ def test(String args) {
     return ansibleHandler.play(args)
 }
 
+/**
+ * Register our data
+ * @param args - json as string
+ * @return stdout
+ */
 def provision(String args){
     return terraformHandler.apply(args)
 }
 
+/**
+ * Register our data
+ * @param args - json as string
+ * @return stdout
+ */
 def destroy(String args){
     return terraformHandler.destroy(args)
+}
+
+/**
+ * Register our data
+ * @param args - json as string
+ * @return stdout
+ */
+def deploy(String args){
+    return ansibleHandler.playbook(args)
 }

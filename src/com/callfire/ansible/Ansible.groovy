@@ -24,3 +24,8 @@ def play(String args) {
     def command = "ansible $args $ansibleEnv"
     return sh (script: "echo $command", returnStdout: true)
 }
+
+def playbook(String args) {
+    def command = "ansible-plabook $args $ansibleEnv"
+    return sh (script: "echo $command", returnStdout: true)
+}

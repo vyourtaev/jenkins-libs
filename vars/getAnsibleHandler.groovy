@@ -1,5 +1,5 @@
-def call(String args){
+def call(piplineParams){
     def ansible =  new com.callfire.ansible.Ansible()
-    ansible.construct(args)
+    ansible.construct(piplineParams)
     return ansible
 }

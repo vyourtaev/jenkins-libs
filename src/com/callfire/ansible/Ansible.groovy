@@ -7,13 +7,14 @@ ansibleEnv
  * @param
  * @return
  */
-def construct(String args) {
-    ansibleEnv = [
-            args: args,
-            inventory: 'inventory/hosts_cf_stage',
-            subset: 'vault',
-            patern: 'vault'
-    ]
+def construct(pipelineParams) {
+//    ansibleEnv = [
+//            args: args,
+//            inventory: 'inventory/hosts_cf_stage',
+//            subset: 'vault',
+//            pattern: 'vault'
+//    ]
+    ansibleEnv = pipelineParams
 }
 
 def getAnsibleEnv() {

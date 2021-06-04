@@ -17,12 +17,16 @@ def construct(pipelineParams) {
     ansibleEnv = pipelineParams
 
     node {
-        checkout ([
+        checkout([
                 $class: 'GitSCM',
-                branches: [[ pipelineParams.ANSIBLE_BRANCH ]],
+                branches: [[name: 'origin/develop']],
+                doGenerateSubmoduleConfigurations: false,
+                extensions: [],
+                submoduleCfg: [],
                 userRemoteConfigs: [[
-                        credentialsId: '6115acaa-96d8-485d-b890-1acc47d58788',
-                        url: 'git@github.com:CallFire/ansible.git' ]]
+                   credentialsId: '6115acaa-96d8-485d-b890-1acc47d58788',
+                   url: 'git@github.com:CallFire/ansible.git'
+                ]]
         ])
     }
 }

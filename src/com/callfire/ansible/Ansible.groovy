@@ -19,7 +19,7 @@ def construct(pipelineParams) {
     node {
         checkout([
                 $class: 'GitSCM',
-                branches: [[name: 'origin/develop']],
+                branches: [[name: pipelineParams.ANSIBLE_BRANCH]],
                 doGenerateSubmoduleConfigurations: false,
                 extensions: [],
                 submoduleCfg: [],

@@ -8,11 +8,11 @@ terraformEnv
  * @return
  */
 def construct(pipelineParams) {
-//    terraformEnv = [
-//            param1: "value1",
-//            param2: "value2"
-//    ]
-   terraformEnv = pipelineParams
+    terraformEnv = [
+            param1: "value1",
+            param2: "value2"
+    ]
+   terraformEnv << pipelineParams
 }
 
 def getTerraformEnv() {

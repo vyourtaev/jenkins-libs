@@ -15,6 +15,8 @@ def construct(pipelineParams) {
 //            pattern: 'vault'
 //    ]
     ansibleEnv = pipelineParams
+
+    git branch: 'develop', credentialsId: '6115acaa-96d8-485d-b890-1acc47d58788', url: 'git@github.com:CallFire/ansible.git'
 }
 
 def getAnsibleEnv() {

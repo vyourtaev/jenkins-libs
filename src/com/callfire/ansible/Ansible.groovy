@@ -19,7 +19,7 @@ def construct(pipelineParams) {
     node {
         checkout([
                 $class: 'GitSCM',
-                branches: [[name: dynamic-stage-jenkinsfile]],
+                branches: [[name: 'dynamic-stage-jenkinsfile']],
                 doGenerateSubmoduleConfigurations: false,
                 extensions: [],
                 submoduleCfg: [],

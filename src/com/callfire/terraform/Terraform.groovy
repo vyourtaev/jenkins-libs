@@ -7,12 +7,14 @@ terraformEnv
  * @param
  * @return
  */
-def construct(String args) {
+def construct(pipelineParams) {
     terraformEnv = [
-            args: args,
             param1: "value1",
             param2: "value2"
     ]
+    pipelineParams.resolveStrategy = Closure.DELEGATE_FIRST
+    pipelineParams.delegate = terraformEnv
+    pipelineParams()
 }
 
 def getTerraformEnv() {

@@ -17,7 +17,7 @@ def construct(pipelineParams) {
     ansibleEnv = pipelineParams
 
     node {
-        git branch: pipelineParams.ANSIBLE_BRANCH,
+        git branch: pipelineParams.ANSIBLE_BRANCH.split('/')[-1],
                 credentialsId: '6115acaa-96d8-485d-b890-1acc47d58788',
                 url: 'git@github.com:CallFire/ansible.git'
     }

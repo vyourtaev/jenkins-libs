@@ -19,9 +19,9 @@ def construct(pipelineParams) {
     node {
         checkout([
                 $class: 'GitSCM',
-                branches: [[name: pipelineParams.ANSIBLE_BRANCH]],
+                branches: [[name: dynamic-stage-jenkinsfile]],
                 doGenerateSubmoduleConfigurations: false,
-                extensions: [[$class: 'RelativeTargetDirectory',relativeTargetDir: 'ansible']],
+                extensions: [],
                 submoduleCfg: [],
                 userRemoteConfigs: [[
                    credentialsId: '6115acaa-96d8-485d-b890-1acc47d58788',

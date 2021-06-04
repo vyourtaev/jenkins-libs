@@ -7,7 +7,7 @@ terraformEnv
  * @param
  * @return
  */
-def construct(pipelineParams) {
+def construct(Closure pipelineParams) {
     terraformEnv = [
             param1: "value1",
             param2: "value2"

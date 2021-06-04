@@ -21,7 +21,7 @@ def construct(pipelineParams) {
                 $class: 'GitSCM',
                 branches: [[name: pipelineParams.ANSIBLE_BRANCH]],
                 doGenerateSubmoduleConfigurations: false,
-                extensions: [],
+                extensions: [[$class: 'RelativeTargetDirectory',relativeTargetDir: 'ansible']],
                 submoduleCfg: [],
                 userRemoteConfigs: [[
                    credentialsId: '6115acaa-96d8-485d-b890-1acc47d58788',

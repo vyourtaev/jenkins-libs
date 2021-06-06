@@ -7,29 +7,44 @@ terraformEnv
  * @param
  * @return
  */
-def construct(pipelineParams) {
+def construct(Map pipelineParams=[:]) {
     terraformEnv = [
             param1: "value1",
             param2: "value2"
     ]
-   terraformEnv << pipelineParams
+
+    terraformEnv += pipelineParams
+
+    node {
+        checkout([
+                $class: 'GitSCM',
+                branches: [[name: params.TERRAFORM_BRANCH]],
+                doGenerateSubmoduleConfigurations: false,
+                extensions: [[$class: 'RelativeTargetDirectory',relativeTargetDir: 'terraform']],
+                submoduleCfg: [],
+                userRemoteConfigs: [[
+                   credentialsId: '6115acaa-96d8-485d-b890-1acc47d58788',
+                   url: params.TERRAFORM_REPO
+                ]]
+        ])
+    }
 }
 
 def getTerraformEnv() {
     return terraformEnv
 }
 
-def plan(String args) {
-    def command = "terraform plan $args $terraformEnv"
+def plan(args) {
+    def command = "terraform plan $args - $terraformEnv"
     return sh (script: "echo $command", returnStdout: true)
 }
 
-def apply(String args) {
-    def command = "terraform apply $args $terraformEnv"
+def apply(args) {
+    def command = "terraform apply $args - $terraformEnv"
     return sh (script: "echo $command", returnStdout: true)
 }
 
-def destroy(String args) {
-    def command = "terraform destroy $args $terraformEnv"
+def destroy(args) {
+    def command = "terraform destroy $args - $terraformEnv"
     return sh (script: "echo $command", returnStdout: true)
 }

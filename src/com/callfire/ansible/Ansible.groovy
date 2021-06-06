@@ -13,7 +13,7 @@ def construct(Map pipelineParams=[:]) {
         subset: 'vault',
         pattern: 'vault'
     ]
-    ansibleEnv = ansibleEnv + pipelineParams
+    ansibleEnv += pipelineParams
 
     node {
         checkout([
@@ -35,11 +35,11 @@ def getAnsibleEnv() {
 }
 
 def play(args) {
-    def command = "ansible $ansibleEnv $params"
+    def command = "ansible $args - $ansibleEnv "
     return sh (script: "echo $command", returnStdout: true)
 }
 
-def playbook(String args) {
-    def command = "ansible-plabook $args $ansibleEnv"
+def playbook(args) {
+    def command = "ansible-plabook $args - $ansibleEnv"
     return sh (script: "echo $command", returnStdout: true)
 }

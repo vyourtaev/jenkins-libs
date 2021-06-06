@@ -14,7 +14,8 @@ def construct(pipelineParams) {
 //            subset: 'vault',
 //            pattern: 'vault'
 //    ]
-    ansibleEnv = pipelineParams
+//    ansibleEnv = pipelineParams
+      ansibleEnv = params
 
     node {
         checkout([

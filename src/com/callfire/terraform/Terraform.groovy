@@ -38,8 +38,8 @@ def getTerraformEnv() {
 }
 
 def plan(args) {
-    def command = terraformEnv.vm_config + '=====' + env.VAULT_TOKEN
-    return sh (script: "echo $command", returnStdout: true)
+    def command = terraformEnv.vm_config
+    return sh (script: "echo $command   $env.VAULT_TOKEN", returnStdout: true)
 }
 
 def apply(args) {

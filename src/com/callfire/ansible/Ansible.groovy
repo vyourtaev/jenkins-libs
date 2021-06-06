@@ -8,14 +8,13 @@ ansibleEnv
  * @return
  */
 def construct(pipelineParams) {
-//    ansibleEnv = [
-//            args: args,
-//            inventory: 'inventory/hosts_cf_stage',
-//            subset: 'vault',
-//            pattern: 'vault'
-//    ]
-//    ansibleEnv = pipelineParams
-      ansibleEnv = params
+    ansibleEnv = [
+            args: args,
+            inventory: 'inventory/hosts_cf_stage',
+            subset: 'vault',
+            pattern: 'vault'
+    ]
+    ansibleEnv += pipelineParams
 
     node {
         checkout([
@@ -37,7 +36,7 @@ def getAnsibleEnv() {
 }
 
 def play(args) {
-    def command = "ansible $args $ansibleEnv " + params.getClass()
+    def command = "ansible $ansibleEnv $params"
     return sh (script: "echo $command", returnStdout: true)
 }
 

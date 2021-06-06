@@ -37,7 +37,7 @@ def getTerraformEnv() {
 
 def plan(args) {
     def command = vm_config_file
-    return sh (script: "echo $command | jq ", returnStdout: true)
+    return sh (script: "echo $command", returnStdout: true)
 }
 
 def apply(args) {

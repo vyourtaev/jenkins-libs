@@ -13,7 +13,7 @@ def construct(Map pipelineParams=[:]) {
         subset: 'vault',
         pattern: 'vault'
     ]
-    ansibleEnv = ansibleEnv + pipelineParams
+    ansibleEnv = ansibleEnv + [:]
 
     node {
         checkout([

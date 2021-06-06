@@ -18,7 +18,7 @@ def construct(ansible, terraform){
     ansibleHandler = ansible
     terraformHandler = terraform
 
-    env.VAULT_TOKEN = mainEnv.VAULT_TOKEN
+//    env.VAULT_TOKEN = mainEnv.VAULT_TOKEN
 }
 
 def getMainEnv() {

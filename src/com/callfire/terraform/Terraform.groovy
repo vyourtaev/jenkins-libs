@@ -14,7 +14,8 @@ def construct(Map pipelineParams=[:]) {
     ]
 
     terraformEnv += pipelineParams
-    vm_config_file = readJSON text: libraryResource 'com/callfire/terraform/vm_config.json'
+    def vm_config_file = libraryResource 'com/callfire/terraform/vm_config.json'
+    terraformEnv.vm_config = readJSON text: vm_config_file
 
 //    node {
 //        checkout([
@@ -36,8 +37,8 @@ def getTerraformEnv() {
 }
 
 def plan(args) {
-    def command = vm_config_file
-    return sh (script: "echo $command | jq", returnStdout: true)
+    def command = terraformEnv.vm_config
+    return sh (script: "echo $command", returnStdout: true)
 }
 
 def apply(args) {

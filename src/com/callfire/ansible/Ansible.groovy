@@ -7,7 +7,7 @@ ansibleEnv
  * @param
  * @return
  */
-def construct(pipelineParams) {
+def construct(Map pipelineParams) {
     ansibleEnv = [
         inventory: 'inventory/hosts_cf_stage',
         subset: 'vault',

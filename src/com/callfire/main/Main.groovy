@@ -19,8 +19,7 @@ def construct(ansible, terraform){
     ansibleHandler = ansible
     terraformHandler = terraform
 
-    env.VAULT_TOKEN = readFile(mainEnv.vault_token_path)
-}
+    env.VAULT_TOKEN = new File(mainEnv.vault_token_path).text
 
 def getMainEnv() {
     return mainEnv

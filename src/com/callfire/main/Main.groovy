@@ -13,12 +13,13 @@ terraformHandler
  */
 def construct(ansible, terraform){
     mainEnv = [
-        VAULT_TOKEN: readFile('/etc/vault/agent/token/vault-token')
+        vault_token_path: '/etc/vault/agent/token/vault-token'
+
     ]
     ansibleHandler = ansible
     terraformHandler = terraform
 
-//    env.VAULT_TOKEN = mainEnv.VAULT_TOKEN
+    env.VAULT_TOKEN = readFile(mainEnv.vault_token_path)
 }
 
 def getMainEnv() {

@@ -26,7 +26,7 @@ def construct(pipelineParams) {
                 submoduleCfg: [],
                 userRemoteConfigs: [[
                    credentialsId: '6115acaa-96d8-485d-b890-1acc47d58788',
-                   url: pipelineParams.ANSIBLE_REPO
+                   url: params.ANSIBLE_REPO
                 ]]
         ])
     }
@@ -37,7 +37,7 @@ def getAnsibleEnv() {
 }
 
 def play(args) {
-    def command = "ansible $args $ansibleEnv"
+    def command = "ansible $args $ansibleEnv $params.class.name"
     return sh (script: "echo $command", returnStdout: true)
 }
 

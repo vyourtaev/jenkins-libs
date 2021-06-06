@@ -37,7 +37,7 @@ def getTerraformEnv() {
 
 def plan(args) {
     def command = readJSON text: vm_config_file
-    return sh (script: "echo $command", returnStdout: true)
+    return sh (script: "echo $command.backend_vars", returnStdout: true)
 }
 
 def apply(args) {

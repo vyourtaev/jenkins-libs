@@ -37,7 +37,7 @@ def getAnsibleEnv() {
 }
 
 def play(args) {
-    def command = "ansible $args $ansibleEnv $params.class.name"
+    def command = "ansible $args $ansibleEnv $params.getClass().getName()"
     return sh (script: "echo $command", returnStdout: true)
 }
 

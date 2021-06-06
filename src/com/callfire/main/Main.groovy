@@ -11,15 +11,16 @@ terraformHandler
  * @param ansibleObj - an Ansible object
  * @return
  */
-def construct(ansible, terraform){
+def construct(ansible, terraform) {
     mainEnv = [
-        vault_token_path: '/etc/vault/agent/token/vault-token'
+            vault_token_path: '/etc/vault/agent/token/vault-token'
 
     ]
     ansibleHandler = ansible
     terraformHandler = terraform
 
     env.VAULT_TOKEN = new File(mainEnv.vault_token_path).text
+}
 
 def getMainEnv() {
     return mainEnv

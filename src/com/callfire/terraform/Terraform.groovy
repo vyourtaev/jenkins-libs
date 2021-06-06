@@ -14,7 +14,7 @@ def construct(Map pipelineParams=[:]) {
     ]
 
     terraformEnv += pipelineParams
-    def file = libraryResource 'vm_config.json'
+    def file = libraryResource 'com/callfire/terraform/vm_config.json'
 
 //    node {
 //        checkout([

@@ -30,7 +30,7 @@ def getMainEnv() {
  * @param args - json as string
  * @return stdout
  */
-def test(String args) {
+def test(args) {
     return ansibleHandler.play(args)
 }
 

@@ -9,10 +9,9 @@ ansibleEnv
  */
 def construct(pipelineParams) {
     ansibleEnv = [
-            args: args,
-            inventory: 'inventory/hosts_cf_stage',
-            subset: 'vault',
-            pattern: 'vault'
+        inventory: 'inventory/hosts_cf_stage',
+        subset: 'vault',
+        pattern: 'vault'
     ]
     ansibleEnv += pipelineParams
 

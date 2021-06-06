@@ -14,20 +14,21 @@ def construct(Map pipelineParams=[:]) {
     ]
 
     terraformEnv += pipelineParams
+    def file = libraryResource 'vm_config.json'
 
-    node {
-        checkout([
-                $class: 'GitSCM',
-                branches: [[name: params.TERRAFORM_BRANCH]],
-                doGenerateSubmoduleConfigurations: false,
-                extensions: [[$class: 'RelativeTargetDirectory',relativeTargetDir: 'terraform']],
-                submoduleCfg: [],
-                userRemoteConfigs: [[
-                   credentialsId: '6115acaa-96d8-485d-b890-1acc47d58788',
-                   url: params.TERRAFORM_REPO
-                ]]
-        ])
-    }
+//    node {
+//        checkout([
+//                $class: 'GitSCM',
+//                branches: [[name: params.TERRAFORM_BRANCH]],
+//                doGenerateSubmoduleConfigurations: false,
+//                extensions: [[$class: 'RelativeTargetDirectory',relativeTargetDir: 'terraform']],
+//                submoduleCfg: [],
+//                userRemoteConfigs: [[
+//                   credentialsId: '6115acaa-96d8-485d-b890-1acc47d58788',
+//                   url: params.TERRAFORM_REPO
+//                ]]
+//        ])
+//    }
 }
 
 def getTerraformEnv() {
@@ -35,8 +36,8 @@ def getTerraformEnv() {
 }
 
 def plan(args) {
-    def command = "terraform plan $args - $terraformEnv"
-    return sh (script: "echo $command", returnStdout: true)
+    def command = "$file"
+    return sh (script: "echo $command | jq ", returnStdout: true)
 }
 
 def apply(args) {

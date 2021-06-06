@@ -39,6 +39,15 @@ def test(args) {
  * @param args - json as string
  * @return stdout
  */
+def plan(args){
+    return terraformHandler.plan(args)
+}
+
+/**
+ * Register our data
+ * @param args - json as string
+ * @return stdout
+ */
 def provision(String args){
     return terraformHandler.apply(args)
 }

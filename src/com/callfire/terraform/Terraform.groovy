@@ -39,8 +39,8 @@ def getTerraformEnv() {
 }
 
 def plan(args) {
-    def command = terraformEnv.terraform_bin
-    return sh (script: "$command workspace list", returnStdout: true)
+//    def command = terraformEnv.terraform_bin
+    return sh (script: "/usr/bin/ls -la", returnStdout: true)
 }
 
 def apply(args) {

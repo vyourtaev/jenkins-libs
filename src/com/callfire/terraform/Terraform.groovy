@@ -9,10 +9,10 @@ terraformEnv
  */
 def construct(Map pipelineParams=[:]) {
     terraformEnv = [
-            TERRAFORM_TOOL: 'terraform-0.13.7',
-            param1: "value1",
-            param2: "value2"
-    ]
+            TERRAFORM_TOOL: 'terraform-0.13.7'
+     ]
+
+    terraformEnv.terraform_bin = tool(terraformEnv.TERRAFORM_TOOL) + / + 'terraform'
 
     terraformEnv += pipelineParams
     def vm_config_file = libraryResource 'com/callfire/terraform/vm_config.json'
@@ -30,6 +30,7 @@ def construct(Map pipelineParams=[:]) {
                    url: params.TERRAFORM_REPO
                 ]]
         ])
+        tool
     }
 }
 
@@ -38,8 +39,8 @@ def getTerraformEnv() {
 }
 
 def plan(args) {
-    def command = terraformEnv.vm_config
-    return sh (script: "echo $command   $env.VAULT_TOKEN", returnStdout: true)
+    def command = terraformEnv.terrafrom_bin
+    return sh (script: "echo $command", returnStdout: true)
 }
 
 def apply(args) {

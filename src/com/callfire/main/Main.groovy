@@ -40,7 +40,7 @@ def test(args) {
  * @param args - json as string
  * @return stdout
  */
-def plan(args){
+def terraform(args){
     return terraformHandler.plan(args)
 }
 

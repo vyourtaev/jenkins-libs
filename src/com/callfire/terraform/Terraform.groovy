@@ -12,7 +12,7 @@ def construct(Map pipelineParams=[:]) {
             TERRAFORM_TOOL: 'terraform-0.13.7'
      ]
 
-    terraformEnv.terraform_bin = tool(terraformEnv.TERRAFORM_TOOL) + '/terraform'
+
 
     terraformEnv += pipelineParams
 
@@ -31,7 +31,8 @@ def construct(Map pipelineParams=[:]) {
                    url: params.TERRAFORM_REPO
                 ]]
         ])
-        tool
+
+        terraformEnv.terraform_bin = tool(terraformEnv.TERRAFORM_TOOL) + '/terraform'
     }
 }
 

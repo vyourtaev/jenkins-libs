@@ -12,9 +12,10 @@ def construct(Map pipelineParams=[:]) {
             TERRAFORM_TOOL: 'terraform-0.13.7'
      ]
 
-    terraformEnv.terraform_bin = tool(terraformEnv.TERRAFORM_TOOL) + / + 'terraform'
+    terraformEnv.terraform_bin = tool(terraformEnv.TERRAFORM_TOOL) + '/terraform'
 
     terraformEnv += pipelineParams
+
     def vm_config_file = libraryResource 'com/callfire/terraform/vm_config.json'
     terraformEnv.vm_config = readJSON text: vm_config_file
 

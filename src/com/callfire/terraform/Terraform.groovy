@@ -45,13 +45,6 @@ def getTerraformEnv() {
     return terraformEnv
 }
 
-def plan(args) {
-    def command = terraformEnv.terraform_bin
-    return sh (script: "${args}", returnStdout: true)
-}
-
-
-
 def destroy(args) {
     def command = "terraform destroy $args - $terraformEnv"
     return sh (script: "echo $command", returnStdout: true)
@@ -84,5 +77,5 @@ def apply(args) {
 
 def exec_command(String args) {
     def command = terraformEnv.terraform_bin
-    return sh (script: "${command} $args", returnStdout: true)
+    return sh (script: "${command} $args", returnStdout: false)
 }

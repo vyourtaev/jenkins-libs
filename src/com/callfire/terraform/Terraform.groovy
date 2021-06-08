@@ -46,13 +46,12 @@ def getTerraformEnv() {
 }
 
 def destroy(args) {
-    def command = """echo    plan
-                -v env_name=ENV_NAME
-                -var labels_custom={ user = 'ci' } 
-                -state=$terraformEnv.state_path/$name 
-                -parallelism=25
-                -auto-approve
-                -input=false"""
+    def command = "echo plan -v env_name=ENV_NAME"
+//                -var labels_custom={ user = 'ci' }
+//                -state=$terraformEnv.state_path/$name
+//                -parallelism=25
+//                -auto-approve
+//                -input=false
     return sh (script: "$command", returnStdout: false)
 }
 

@@ -47,16 +47,16 @@ def getTerraformEnv() {
 
 def destroy(args) {
     def command = """
-        plan
+        echo    plan
                 -v env_name=$args.name 
                 -var labels_custom={ user = 'ci' } 
-                -state="$terraformEnv.state_path/$name" 
+                -state=$terraformEnv.state_path/$name 
                 -parallelism=25
                 -auto-approve
                 -input=false
                 $terraformEnv.vm_count
-    """
-    return sh (script: "echo $command", returnStdout: true)
+        """
+    return sh (script: "$command", returnStdout: false)
 }
 
 def workspace_list() {

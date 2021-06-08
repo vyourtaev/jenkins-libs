@@ -46,12 +46,12 @@ def getTerraformEnv() {
 }
 
 def destroy(args) {
-    def command = "echo plan -v env_name=ENV_NAME" +
-                  "-state=$terraformEnv.state_path/ENV_NAME" +
-                  "-parallelism=25" +
-                  "-auto-approve" +
-                  "-input=false" +
-                  "$terraformEnv.vm_config"
+    def command = "echo plan -v env_name=ENV_NAME " +
+                  "-state=$terraformEnv.state_path/ENV_NAME " +
+                  "-parallelism=25 " +
+                  "-auto-approve " +
+                  "-input=false " +
+                  "$terraformEnv.vm_config.vm_count"
     return sh (script: "$command", returnStdout: false)
 }
 

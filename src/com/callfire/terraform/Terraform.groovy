@@ -19,7 +19,7 @@ def construct(Map pipelineParams=[:]) {
 
     terraformEnv.vm_config = readJSON text: vm_config_file
 
-    terraformEnv.vm_count = terraformEnv.vm_config.vm_count + terraformEnv.vm_config.watson_vars
+    terraformEnv.vm_count = terraformEnv.vm_config.vm_count //+ terraformEnv.vm_config.watson_vars
 //    terraformEnv.vars = terraformEnv.vm_count.collect({k, v -> { "-vars $k=$v"}}.join(' '))
 
     terraformEnv.state_path = "${env.WORKSPACE}/../terraform-state"
@@ -46,16 +46,14 @@ def getTerraformEnv() {
 }
 
 def destroy(args) {
-    def command = """
-        echo    plan
+    def command = """echo    plan
                 -v env_name=$args.name 
                 -var labels_custom={ user = 'ci' } 
                 -state=$terraformEnv.state_path/$name 
                 -parallelism=25
                 -auto-approve
                 -input=false
-                $terraformEnv.vm_count
-        """
+                $terraformEnv.vm_count"""
     return sh (script: "$command", returnStdout: false)
 }
 

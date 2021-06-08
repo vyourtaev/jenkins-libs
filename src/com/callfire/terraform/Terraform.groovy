@@ -85,5 +85,5 @@ def apply(args) {
 def exec_command(String args) {
 //    def command = terraformEnv.terraform_bin
     def command = "echo"
-    return sh (script: "${command} $args")
+    return sh (script: "${command} $args", returnStdout: true)
 }

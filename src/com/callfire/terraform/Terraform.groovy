@@ -46,7 +46,16 @@ def getTerraformEnv() {
 }
 
 def destroy(args) {
-    def command = "terraform destroy $args - $terraformEnv"
+    def command = """
+        plan
+                -v env_name=$args.name 
+                -var labels_custom={ user = 'ci' } 
+                -state="$terraformEnv.state_path/$name" 
+                -parallelism=25
+                -auto-approve
+                -input=false
+                $terraformEnv.vm_count
+    """
     return sh (script: "echo $command", returnStdout: true)
 }
 

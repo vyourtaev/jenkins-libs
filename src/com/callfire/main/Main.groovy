@@ -41,7 +41,7 @@ def test(args) {
  * @return stdout
  */
 def terraform(args){
-    return terraformHandler.plan(args)
+    return terraformHandler.plan("printenv")
 }
 
 /**

@@ -40,7 +40,7 @@ def getTerraformEnv() {
 
 def plan(args) {
     def command = terraformEnv.terraform_bin
-    return sh (script: "printenv", returnStdout: true)
+    return sh (script: "${args}", returnStdout: true)
 }
 
 def apply(args) {

@@ -45,8 +45,8 @@ def plan(args) {
 }
 
 def apply(args) {
-    def command = "terraform apply $args - $terraformEnv"
-    return sh (script: "echo $command", returnStdout: true)
+    def command = "terra apply $args.name $terraformEnv.vm_config"
+    return sh (script: "echo $command", returnStdout: false)
 }
 
 def destroy(args) {

@@ -76,6 +76,6 @@ def deploy(String args){
  * * @param args - json as string
  * @return stdout
  */
-def list(args){
+def printenv(args){
     return terraformHandler.get()
 }

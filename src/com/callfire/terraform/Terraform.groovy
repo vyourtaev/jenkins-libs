@@ -57,6 +57,10 @@ def workspace_list() {
     return exec_command("workspace list")
 }
 
+def workspace_init() {
+    return exec_command("init -upgrade")
+}
+
 def exec_command(String args) {
     def command = terraformEnv.terraform_bin
     return sh (script: "${command} $args")

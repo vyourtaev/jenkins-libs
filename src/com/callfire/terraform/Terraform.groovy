@@ -53,11 +53,11 @@ def destroy(args) {
     return sh (script: "echo $command", returnStdout: true)
 }
 
-def get(args) {
+def get(args='') {
     return run(args)
 }
 
-def run(args) {
+def run(args = '') {
     def command = "printenv $args"
     return sh (script: "${command}", returnStdout: true)
 }

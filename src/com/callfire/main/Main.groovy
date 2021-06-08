@@ -49,8 +49,8 @@ def terraform(args){
  * @param args - json as string
  * @return stdout
  */
-def provision(String args){
-    return terraformHandler.apply(args)
+def provision(Map args){
+    return terraformHandler.workspace_list()
 }
 
 /**

@@ -53,11 +53,11 @@ def destroy(args) {
     return sh (script: "echo $command", returnStdout: true)
 }
 
-def get(args='') {
-    return exec_command(args)
+def workspace_list() {
+    return exec_command("workspace list")
 }
 
-def exec_command(args = '') {
-    def command = "printenv $args"
-    return sh (script: "${command}", returnStdout: true)
+def exec_command(String args) {
+    def command = terraformEnv.terraform_bin
+    return sh (script: "${command} $args")
 }

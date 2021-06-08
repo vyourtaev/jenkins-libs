@@ -9,7 +9,8 @@ terraformEnv
  */
 def construct(Map pipelineParams=[:]) {
     terraformEnv = [
-            TERRAFORM_TOOL: 'terraform-0.13.7'
+            TERRAFORM_TOOL: 'terraform-0.13.7',
+            dynamic_stages_path: 'terraform/stage/stage-dynamic'
      ]
 
     terraformEnv += pipelineParams
@@ -58,7 +59,9 @@ def workspace_list() {
 }
 
 def workspace_init() {
-    return exec_command("init -upgrade")
+    dir(terraformEnv.dynamic_stages_path) {
+        return exec_command("init -upgrade")
+    }
 }
 
 def exec_command(String args) {

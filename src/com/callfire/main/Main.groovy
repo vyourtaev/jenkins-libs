@@ -77,5 +77,6 @@ def deploy(String args){
  * @return stdout
  */
 def printenv(args = ''){
-    return terraformHandler.get(args)
+//    return terraformHandler.get(args)
+    return sh (script: "printenv", returnStdout: true)
 }

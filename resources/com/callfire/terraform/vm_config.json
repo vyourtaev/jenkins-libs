@@ -1,15 +1,9 @@
 {
-  "backend_vars": {
-  "notification_es_count": 1,
-  "notification_mq_count": 1
-  },
   "vm_count": {
-    "api_v1_count": 0,
+    "api_v1_count": 1,
     "api_v2_count": 1,
-    "app_remote": "git@github.com:EzTexting/app.git",
-    "bmp_remote": "git@github.com:EzTexting/bmp.git",
     "caller_count": 1,
-    "carrier_count": 0,
+    "carrier_count": 1,
     "dataset": "minimal",
     "delegator_count": 1,
     "deploy_app_git_ref": "develop",
@@ -46,7 +40,7 @@
     "tesla_mq_vip_count": 1,
     "tesla_sip_count": 1,
     "tesla_zk_count": 1,
-    "ui_developers_count": 0,
+    "ui_developers_count": 1,
     "ui_tesla_count": 1
     },
   "watson_vars": {

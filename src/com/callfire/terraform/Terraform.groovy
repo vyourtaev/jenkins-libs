@@ -16,7 +16,12 @@ def construct(Map pipelineParams=[:]) {
     terraformEnv += pipelineParams
 
     def vm_config_file = libraryResource 'com/callfire/terraform/vm_config.json'
+
     terraformEnv.vm_config = readJSON text: vm_config_file
+
+    terraformEnv.vm_count = terraformEnv.vm_config.vm_count + terraformEnv.vm_config.watson_vars
+    terraformEnv.vars = terraformEnv.vm_count.collect({k, v -> { "-vars $k=$v"}}.join(' '))
+    terraformEnv.state_path = "${env.WORKSPACE}/../terraform-state"
 
     node {
         checkout([
@@ -44,10 +49,7 @@ def plan(args) {
     return sh (script: "${args}", returnStdout: true)
 }
 
-def apply(args) {
-    def command = "terra apply $args.name $terraformEnv.vm_config"
-    return sh (script: "echo $command", returnStdout: false)
-}
+
 
 def destroy(args) {
     def command = "terraform destroy $args - $terraformEnv"
@@ -61,6 +63,21 @@ def workspace_list() {
 def workspace_init() {
     dir(terraformEnv.dynamic_stages_path) {
         return exec_command("init -upgrade")
+    }
+}
+
+def apply(args) {
+    dir(terraformEnv.dynamic_stages_path) {
+        return exec_command("""
+            plan 
+                -v env_name=$args.name 
+                -var labels_custom={ user = 'ci' } 
+                -state="$terraformEnv.state_path/$name" 
+                -parallelism=25
+                -auto-approve
+                -input=false
+                $terraformEnv.vars
+        """)
     }
 }
 

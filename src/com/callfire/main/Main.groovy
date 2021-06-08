@@ -51,8 +51,8 @@ def terraform(args){
  */
 def provision(Map args){
     return [
-       terraformHandler.workspace_list(),
-       terraformHandler.workspace_init()
+       terraformHandler.workspace_list()
+//       terraformHandler.workspace_init()
 //       terraformHandler.apply(args)
     ]
 }

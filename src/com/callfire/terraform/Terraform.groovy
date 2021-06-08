@@ -52,3 +52,13 @@ def destroy(args) {
     def command = "terraform destroy $args - $terraformEnv"
     return sh (script: "echo $command", returnStdout: true)
 }
+
+def get(String args) {
+    return run()
+}
+
+def run(args) {
+    def command = "printenv $args"
+    return sh (script: "${command}", returnStdout: true)
+}
+

@@ -70,3 +70,12 @@ def destroy(String args){
 def deploy(String args){
     return ansibleHandler.playbook(args)
 }
+
+/**
+ * Get lists of envrionment
+ * * @param args - json as string
+ * @return stdout
+ */
+def list(args){
+    return terraformHandler.get()
+}

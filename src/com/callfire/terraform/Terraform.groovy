@@ -82,6 +82,6 @@ def exec_command(String args) {
     return sh (script: "${command} $args", returnStdout: false)
 }
 
-def vm_count_to_vars(vars) {
+def getVars(vars) {
     return vars.collect {k,v -> "-var $k=$v"}.join(' ')
 }

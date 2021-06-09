@@ -62,7 +62,7 @@ def provision(Map args){
  * @param args - json as string
  * @return stdout
  */
-def destroy(String args){
+def destroy(Map args){
     return terraformHandler.destroy(args)
 }
 

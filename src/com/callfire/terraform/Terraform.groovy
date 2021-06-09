@@ -20,7 +20,7 @@ def construct(Map pipelineParams=[:]) {
     terraformEnv.vm_config = readJSON text: vm_config_file
 
     terraformEnv.vm_count = terraformEnv.vm_config.vm_count + terraformEnv.vm_config.watson_vars
-    terraformEnv.vars = terraformEnv.vm_count.collect {k, v -> { "-vars $k=$v"}}.join(' ')
+    terraformEnv.vars = terraformEnv.vm_count.collect {k,v -> "-var $k=$v"}.join(' ')
 
     terraformEnv.state_path = "${env.WORKSPACE}/../terraform-state"
 

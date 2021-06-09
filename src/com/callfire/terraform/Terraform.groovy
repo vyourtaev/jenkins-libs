@@ -21,6 +21,7 @@ def construct(Map pipelineParams=[:]) {
 
     terraformEnv.vm_count = terraformEnv.vm_config.vm_count + terraformEnv.vm_config.watson_vars
     terraformEnv.vars = getVars(terraformEnv.vm_count)
+    terraformEnv.WORKSPACE = env.WORKSPACE
     terraformEnv.state_path = "${env.WORKSPACE}/../terraform-state"
 
     node {

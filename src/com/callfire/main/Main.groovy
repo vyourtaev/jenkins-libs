@@ -81,6 +81,6 @@ def deploy(String args){
  * @return stdout
  */
 def printenv(args = ''){
-//    return terraformHandler.get(args)
-    return sh (script: "echo $env.WORKSPACE")
+    return terraformHandler.getEnvironmentVariables()
+//    return sh (script: "echo $env.WORKSPACE")
 }

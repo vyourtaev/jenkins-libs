@@ -20,7 +20,7 @@ def construct(Map pipelineParams=[:]) {
     terraformEnv.vm_config = readJSON text: vm_config_file
 
     terraformEnv.vm_count = terraformEnv.vm_config.vm_count + terraformEnv.vm_config.watson_vars
-    terraformEnv.vars = getVars(terraformEnv.vm_count)
+    terraformEnv.vars = getTerraformVars(terraformEnv.vm_count)
     terraformEnv.WORKSPACE = env.WORKSPACE
     terraformEnv.state_path = "${env.WORKSPACE}/../terraform-state"
 
@@ -45,6 +45,15 @@ def getTerraformEnv() {
     return terraformEnv
 }
 
+def getTerraformVars(vars) {
+    return vars.collect {k,v -> "-var $k=$v"}.join(' ')
+}
+
+def getEnvironmentVariables() {
+    return sh (script: "echo $env.WORKSPACE", returnStdout: false)
+}
+
+
 def destroy(args) {
     def command = "echo plan -v env_name=$args.name " +
                   "-state=$terraformEnv.state_path/$args.name " +
@@ -57,12 +66,6 @@ def destroy(args) {
 
 def workspace_list() {
     return exec_command("workspace list")
-}
-
-def getVars() {
-    dir(terraformEnv.dynamic_stages_path) {
-        return exec_command("init -upgrade")
-    }
 }
 
 def apply(args) {
@@ -81,8 +84,4 @@ def apply(args) {
 def exec_command(String args) {
     def command = terraformEnv.terraform_bin
     return sh (script: "${command} $args", returnStdout: false)
-}
-
-def getVars(vars) {
-    return vars.collect {k,v -> "-var $k=$v"}.join(' ')
 }

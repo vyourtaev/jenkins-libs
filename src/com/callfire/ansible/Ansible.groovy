@@ -10,7 +10,7 @@ ansibleEnv
 def construct(Map pipelineParams=[:]) {
     ansibleEnv = [
         ANSIBLE_VERSION: '2.8.4',
-        ENVIRONMENT_VAR: $env.WORKSPACE
+        ENVIRONMENT_VAR: env.WORKSPACE
     ]
     ansibleEnv += pipelineParams
 

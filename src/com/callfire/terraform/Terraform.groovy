@@ -71,12 +71,12 @@ def apply(args) {
     dir(terraformEnv.dynamic_stages_path) {
         return exec_command("plan" +
                 "-v env_name=$args.name" +
+                "-state=$env.WORKSPACE/../terraform-state/$args.name " +
                 "-var labels_custom={ user = 'ci' }" +
-                "-state=$terraformEnv.state_path/$name" +
                 "-parallelism=25" +
                 "-auto-approve" +
                 "-input=false" +
-                "$terraformEnv.vm_count")
+                "$terraformEnv.vars")
     }
 }
 

@@ -55,7 +55,6 @@ def provision(Map args){
                 terraformHandler.workspace_init(),
                 terraformHandler.apply(args)
         ]
-
 }
 
 /**

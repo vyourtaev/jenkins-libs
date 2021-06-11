@@ -71,7 +71,7 @@ def workspace_init() {
     return exec_command(('init -upgrade'))
 }
 
-def apply(args) {
+def plan(args) {
         return exec_command("plan " +
                 "-var env_name=$args.name " +
                 "-state=$env.WORKSPACE/../terraform-state/$args.name/terraform.tfstate " +
@@ -79,6 +79,16 @@ def apply(args) {
                 "-parallelism=25 " +
                 "-input=false " +
                 "$terraformEnv.vars")
+}
+
+def apply(args) {
+    return exec_command("plan " +
+            "-var env_name=$args.name " +
+            "-state=$env.WORKSPACE/../terraform-state/$args.name/terraform.tfstate " +
+//                "-var labels_custom={ user = 'ci' } " +
+            "-parallelism=25 " +
+            "-input=false " +
+            "$terraformEnv.vars")
 }
 
 def exec_command(String args) {

@@ -77,7 +77,6 @@ def apply(args) {
                 "-state=$env.WORKSPACE/../terraform-state/$args.name/terraform.tfstate " +
 //                "-var labels_custom={ user = 'ci' } " +
                 "-parallelism=25 " +
-                "-auto-approve " +
                 "-input=false " +
                 "$terraformEnv.vars")
 }

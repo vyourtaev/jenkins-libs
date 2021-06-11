@@ -75,7 +75,7 @@ def workspace_init() {
 
 def apply(args) {
     dir(terraformEnv.dynamic_stages_path) {
-        return exec_command("plan" +
+        return exec_command("plan " +
                 "-v env_name=$args.name" +
                 "-state=$env.WORKSPACE/../terraform-state/$args.name " +
                 "-var labels_custom={ user = 'ci' }" +

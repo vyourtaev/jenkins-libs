@@ -13,6 +13,7 @@ terraformHandler
  */
 def construct(ansible, terraform) {
     mainEnv = [
+            JENKINS_HOME: '/var/lib/jenkins',
             vault_token_path: '/etc/vault/agent/token/vault-token'
 
     ]

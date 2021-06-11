@@ -10,7 +10,8 @@ terraformEnv
 def construct(Map pipelineParams=[:]) {
     terraformEnv = [
             TERRAFORM_TOOL: 'terraform-0.13.7',
-            dynamic_stages_path: 'terraform/stage/stage-dynamic'
+            dynamic_stages_path: 'terraform/stage/stage-dynamic',
+            state_path: 1
      ]
 
     terraformEnv += pipelineParams
@@ -21,8 +22,6 @@ def construct(Map pipelineParams=[:]) {
 
     terraformEnv.vm_count = terraformEnv.vm_config.vm_count + terraformEnv.vm_config.watson_vars
     terraformEnv.vars = getTerraformVars(terraformEnv.vm_count)
-    terraformEnv.WORKSPACE = env.WORKSPACE
-    terraformEnv.state_path = "${env.WORKSPACE}/../terraform-state"
 
     node {
         checkout([
@@ -56,7 +55,7 @@ def getEnvironmentVariables() {
 
 def destroy(args) {
     def command = "echo plan -v env_name=$args.name " +
-                  "-state=$terraformEnv.state_path/$args.name " +
+                  "-state=$nev.WORKSPACE/../terraform-state/$args.name " +
                   "-parallelism=25 " +
                   "-auto-approve " +
                   "-input=false " +

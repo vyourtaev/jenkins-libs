@@ -73,7 +73,7 @@ def workspace_init() {
 
 def apply(args) {
         return exec_command("plan " +
-                "-v env_name=$args.name " +
+                "-var env_name=$args.name " +
                 "-state=$env.WORKSPACE/../terraform-state/$args.name/terraform.tfstate " +
 //                "-var labels_custom={ user = 'ci' } " +
                 "-parallelism=25 " +

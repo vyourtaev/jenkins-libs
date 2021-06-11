@@ -88,6 +88,7 @@ def apply(args) {
 //                "-var labels_custom={ user = 'ci' } " +
             "-parallelism=25 " +
             "-input=false " +
+            "-auto-approve " +
             "$terraformEnv.vars")
 }
 

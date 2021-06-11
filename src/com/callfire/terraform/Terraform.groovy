@@ -90,7 +90,7 @@ def destroy(args) {
             "-state=$env.WORKSPACE/../terraform-state/$args.name/terraform.tfstate " +
             "-parallelism=25 " +
             "-input=false " +
-            "-auto-approve "
+            "-auto-approve ")
 }
 
 def exec_command(String args) {

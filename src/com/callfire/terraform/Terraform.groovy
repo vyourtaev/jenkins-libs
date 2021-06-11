@@ -53,15 +53,7 @@ def getEnvironmentVariables() {
 }
 
 
-def destroy(args) {
-    def command = "echo plan -v env_name=$args.name " +
-                  "-state=$env.WORKSPACE/../terraform-state/$args.name " +
-                  "-parallelism=25 " +
-                  "-auto-approve " +
-                  "-input=false " +
-                  "$terraformEnv.vars"
-    return sh (script: "$command", returnStdout: false)
-}
+
 
 def workspace_list() {
     return exec_command("workspace list")
@@ -90,6 +82,15 @@ def apply(args) {
             "-input=false " +
             "-auto-approve " +
             "$terraformEnv.vars")
+}
+
+def destroy(args) {
+    return exec_command("destroy " +
+            "-var env_name=$args.name " +
+            "-state=$env.WORKSPACE/../terraform-state/$args.name/terraform.tfstate " +
+            "-parallelism=25 " +
+            "-input=false " +
+            "-auto-approve "
 }
 
 def exec_command(String args) {

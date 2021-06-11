@@ -68,8 +68,7 @@ def workspace_list() {
 }
 
 def workspace_init() {
-        return exec_command(('init -upgrade'))
-    }
+    return exec_command(('init -upgrade'))
 }
 
 def apply(args) {

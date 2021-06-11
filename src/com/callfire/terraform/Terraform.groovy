@@ -9,7 +9,7 @@ terraformEnv
  */
 def construct(Map pipelineParams=[:]) {
     terraformEnv = [
-            TERRAFORM_TOOL: 'terraform-0.13.7',
+            TERRAFORM_TOOL: 'terraform-0.14.11',
             dynamic_stages_path: 'terraform/stage/stage-dynamic',
             state_path: 1
      ]

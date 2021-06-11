@@ -82,7 +82,7 @@ def plan(args) {
 }
 
 def apply(args) {
-    return exec_command("plan " +
+    return exec_command("apply " +
             "-var env_name=$args.name " +
             "-state=$env.WORKSPACE/../terraform-state/$args.name/terraform.tfstate " +
 //                "-var labels_custom={ user = 'ci' } " +

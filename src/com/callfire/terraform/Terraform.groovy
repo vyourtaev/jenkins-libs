@@ -55,7 +55,7 @@ def getEnvironmentVariables() {
 
 def destroy(args) {
     def command = "echo plan -v env_name=$args.name " +
-                  "-state=$nev.WORKSPACE/../terraform-state/$args.name " +
+                  "-state=$env.WORKSPACE/../terraform-state/$args.name " +
                   "-parallelism=25 " +
                   "-auto-approve " +
                   "-input=false " +

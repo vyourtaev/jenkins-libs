@@ -68,7 +68,6 @@ def workspace_list() {
 }
 
 def workspace_init() {
-    dir('terraform/stage/stage-dynamic') {
         return exec_command(('init -upgrade'))
     }
 }
@@ -76,12 +75,12 @@ def workspace_init() {
 def apply(args) {
     dir(terraformEnv.dynamic_stages_path) {
         return exec_command("plan " +
-                "-v env_name=$args.name" +
+                "-v env_name=$args.name " +
                 "-state=$env.WORKSPACE/../terraform-state/$args.name " +
-                "-var labels_custom={ user = 'ci' }" +
-                "-parallelism=25" +
-                "-auto-approve" +
-                "-input=false" +
+                "-var labels_custom={ user = 'ci' } " +
+                "-parallelism=25 " +
+                "-auto-approve " +
+                "-input=false " +
                 "$terraformEnv.vars")
     }
 }

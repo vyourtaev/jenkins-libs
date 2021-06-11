@@ -50,11 +50,13 @@ def terraform(args){
  * @return stdout
  */
 def provision(Map args){
-    return [
-       terraformHandler.workspace_list(),
-       terraformHandler.workspace_init(),
-       terraformHandler.apply(args)
-    ]
+    dir('terraform/stage/stage-dynamic') {
+        return [
+                terraformHandler.workspace_list(),
+                terraformHandler.workspace_init(),
+                terraformHandler.apply(args)
+        ]
+    }
 }
 
 /**

@@ -50,7 +50,6 @@ def terraform(args){
  * @return stdout
  */
 def provision(Map args){
-
         return [
                 terraformHandler.workspace_list(),
                 terraformHandler.workspace_init(),

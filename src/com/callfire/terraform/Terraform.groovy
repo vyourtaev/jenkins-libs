@@ -72,19 +72,20 @@ def workspace_init() {
 }
 
 def apply(args) {
-    dir(terraformEnv.dynamic_stages_path) {
         return exec_command("plan " +
                 "-v env_name=$args.name " +
                 "-state=$env.WORKSPACE/../terraform-state/$args.name " +
-                "-var labels_custom={ user = 'ci' } " +
+//                "-var labels_custom={ user = 'ci' } " +
                 "-parallelism=25 " +
                 "-auto-approve " +
                 "-input=false " +
                 "$terraformEnv.vars")
-    }
 }
 
 def exec_command(String args) {
     def command = terraformEnv.terraform_bin
-    return sh (script: "${command} $args", returnStdout: false)
+
+    dir('terraform/stage/stage-dynamic') {
+        return sh(script: "${command} $args", returnStdout: false)
+    }
 }
